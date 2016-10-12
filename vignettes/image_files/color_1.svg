@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1000" height="30"
+>
+  <text font-size="16" x="10" y="20">
+    <tspan fill="#b20000">Red = Activation/Expression</tspan>,
+    <tspan fill="#0015b2">Blue = Inhibition</tspan>,
+    <tspan fill="#ff6600">Orange = Activation+subtype</tspan>,
+    <tspan fill="black">Black(dashed) = Indirect effect</tspan>
+  </text>
+</svg>
