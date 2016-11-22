@@ -111,9 +111,9 @@ function(expanded_edges, data_added = FALSE, significance_markup = FALSE){
                                                 expanded_edges$entry2symbol[i])
                 }
             else {
-                expanded_edges$tooltip <- 
-                    paste0(expanded_edges$entry1symbol, " --> ", 
-                                                expanded_edges$entry2symbol)
+                expanded_edges$tooltip[i] <- 
+                    paste0(expanded_edges$entry1symbol[i], " --> ", 
+                                                expanded_edges$entry2symbol[i])
             }
         }
     }
