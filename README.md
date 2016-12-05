@@ -29,7 +29,7 @@ library(KEGGlincs)
 
 #Overview of package
 
-![](https://github.com/uc-bd2k/KEGGlincs/blob/master/vignettes/image_files/KEGGlincs_overview.png)
+![](https://github.com/uc-bd2k/KEGGlincs/blob/master/vignettes/image_files/KEGGlincs_overview.jpeg)
 
 ----
 KEGGlincs is an R package that provides a seamless interface for viewing detailed versions of KEGG pathways in Cytoscape such that the exact relationships (*edges*) that exist between pathway elements (*nodes*) are visualized in a meaningful manner.  
