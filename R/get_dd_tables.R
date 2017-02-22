@@ -21,6 +21,26 @@ get_drug_table <- function(pathwayid){
             warning("No associated drug targets in selected pathway")
             return()
         }
+        names(d_table) <- c("drug_KEGG_ID", "drug_name", "gene_target")
+        d_table$gene_target <- strsplit(d_table$gene_target, " ")
+
+        for(i in 1:nrow(d_table)){
+            l <- length(unlist(d_table$gene_target[i]))
+            d_table$drug_KEGG_ID[i] <- list(rep(d_table$drug_KEGG_ID[i], l))
+            d_table$drug_name[i] <- list(rep(d_table$drug_name[i], l))
+        }
+        
+        long_drug <- data.frame("drug_KEGG_ID" = unlist(d_table$drug_KEGG_ID), 
+                                "drug_name" = unlist(d_table$drug_name), 
+                                "gene_target" = unlist(d_table$gene_target),
+                                 stringsAsFactors = FALSE)
+        for (i in 1:nrow(long_drug)){
+            long_drug$gene_id[i] <- strsplit(long_drug$gene_target[i], "\\(")[[1]][1]
+            long_drug$gene_symbol[i] <- regmatches(long_drug$gene_target[i], gregexpr("(?<=\\().*?(?=\\))", long_drug$gene_target[i], perl=T))[[1]]
+        }
+        drops <- "gene_target"
+        d_table <- long_drug[, names(long_drug) != drops]
+        
         return(d_table)
     }
     else {
