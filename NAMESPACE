@@ -2,6 +2,7 @@
 
 export(KEGG_lincs)
 export(add_edge_data)
+export(add_kegg_drugs)
 export(cyto_vis)
 export(edge_mapping_info)
 export(expand_KEGG_edges)
