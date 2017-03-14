@@ -4,6 +4,7 @@
 #' @param pathwayid A KEGG pathway ID of the form "hsa12345" 
 #' (only human pathways currently)
 #' @return A data.frame object with either disease or drug information
+#' @importFrom XML readHTMLTable
 #' @export
 #' @examples
 #' RA_drug_table <- get_drug_table("hsa05323")

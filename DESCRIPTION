@@ -14,10 +14,10 @@ LazyData: true
 RoxygenNote: 5.0.1
 Depends: R (>= 3.3), KOdata, hgu133a.db, org.Hs.eg.db (>= 3.3.0)
 SystemRequirements: Cytoscape (>= 3.3.0), Java (>= 8)
-Suggests: BiocInstaller (>= 1.20.3), knitr, rmarkdown, graph
+Suggests: BiocInstaller (>= 1.20.3), knitr, graph
 biocViews: NetworkInference, GeneExpression, DataRepresentation,
         ThirdPartyClient,CellBiology,GraphAndNetwork,Pathways,KEGG,Network
 Imports:
         AnnotationDbi,KEGGgraph,igraph,plyr,gtools,httr,RJSONIO,KEGGREST,
-        methods,graphics,stats,utils
+        methods,graphics,stats,utils, XML
 VignetteBuilder: knitr
