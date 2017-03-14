@@ -15,9 +15,9 @@
 
 #' end_res_drugs <- get_drug_table("hsa01522")
 
-#' edges_plus_kdrug <- add_kegg_drugs(end_res_edges, end_res_KEGG_mappings, end_res_drugs)
+#' edges_plus_kdrug <- add_KEGG_drugs(end_res_edges, end_res_KEGG_mappings, end_res_drugs)
 
-add_kegg_drugs <- function(edges, KEGG_mappings, kegg_drug_table){
+add_KEGG_drugs <- function(edges, KEGG_mappings, kegg_drug_table){
 
     edges$u_ID <- paste0(edges$entry1accession,":", edges$entry2accession)
     kegg_drug_table$u_ID <- paste0(kegg_drug_table$drug_KEGG_ID,":", kegg_drug_table$gene_id)
