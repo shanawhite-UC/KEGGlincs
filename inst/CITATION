@@ -1,0 +1,32 @@
+c(
+  bibentry(bibtype = "Misc",
+           title = "KEGGlincs design and application: an R package for 
+                exploring relationships in biological pathways 
+                [version 1; not peer reviewed]",
+           
+           author = c(person("Shana", "White"),
+                      person("Mario", "Medvedovic")),
+           
+           journal = "F1000Research",
+           
+           year = 2016,
+           
+           volume = "5:2721 (poster)",
+           
+           doi = "10.7490/f1000research.1113436.1"),
+  
+  bibentry(bibtype= "Manual",
+           title = "KEGGlincs: Visualize all edges within a KEGG pathway and overlay 
+                LINCS data [option]",
+           
+           author = personList(
+             as.person("Shana White"),
+             as.person("Mario Medvedovic")
+           ),
+           
+           year = 2016,
+           
+           url = "http://www.bioconductor.org/packages/KEGGlincs",
+           
+           note = "R package version 1.1.0")
+)
