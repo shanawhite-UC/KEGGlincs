@@ -41,5 +41,28 @@ edges <- edge_mapping_info(p53_edges)
 
 p53_graph_object <- get_graph_object(nodes, edges)
                                       
-}
+\dontrun{
+cyto_vis(p53_graph_object, "Default p53 Graph [no data added]")
 
+#Workflow to visualize graph with data-dependent attributes:
+
+p53_KGML <- get_KGML("hsa04115")
+p53_KEGG_mappings <- expand_KEGG_mappings(p53_KGML)
+nodes <- node_mapping_info(p53_KEGG_mappings)
+
+p53_edges <- expand_KEGG_edges(p53_KGML, p53_KEGG_mappings)
+
+p53_HA1E_data <- overlap_info(p53_KGML, p53_KEGG_mappings, "HA1E", 
+                               data_type = "100_bing")
+p53_edges_plus_data <- add_edge_data(p53_edges, p53_KEGG_mappings, 
+                                      p53_HA1E_data, c(3, 10,12),
+                                      only_mapped = TRUE)
+
+edges <- edge_mapping_info(p53_edges_plus_data, data_added = TRUE)
+                                            
+p53_plus_data_graph_object <- get_graph_object(nodes, edges)
+                                                
+cyto_vis(p53_plus_data_graph_object, "p53 Graph: Mapped Edges + HA1E Data",
+         edge_width_attribute = "UP")
+         }
+}

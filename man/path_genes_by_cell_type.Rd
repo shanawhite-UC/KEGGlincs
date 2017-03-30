@@ -31,4 +31,3 @@ p53_KEGG_mappings <- expand_KEGG_mappings(p53_KGML)
 
 path_genes_by_cell_type(p53_KEGG_mappings)
 }
-

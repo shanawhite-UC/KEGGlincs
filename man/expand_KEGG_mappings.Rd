@@ -31,4 +31,3 @@ mappings based on multi-valued name attribute
 p53_KGML <- get_KGML("hsa04115")
 p53_KEGG_mappings <-  expand_KEGG_mappings(p53_KGML, FALSE)
 }
-

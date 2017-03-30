@@ -30,4 +30,3 @@ ribosome_KGML <- get_KGML("hsa03020")
 ribosome_KGML <- get_KGML("hsa03020", get_if_no_edges = TRUE) 
 
 }
-

@@ -56,4 +56,3 @@ p53_HA1E_data <- overlap_info(p53_KGML, p53_KEGG_mappings,
                                "HA1E", data_type = "100_bing", 
                                only_mapped = FALSE)
 }
-

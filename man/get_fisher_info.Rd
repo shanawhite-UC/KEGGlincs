@@ -33,4 +33,3 @@ ex.data <- data.frame("UP" = c(70,6), "DOWN" = c(8,20),
 
 overlaps <- get_fisher_info(ex.data, method = "BH")
 }
-

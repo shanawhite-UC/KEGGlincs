@@ -24,4 +24,3 @@ p53_KEGG_mappings <- expand_KEGG_mappings(p53_KGML, FALSE)
 
 p53_node_mapping_info <- node_mapping_info(p53_KEGG_mappings)
 }
-

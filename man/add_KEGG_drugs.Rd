@@ -28,4 +28,3 @@ end_res_edges <- expand_KEGG_edges(end_res_KGML, end_res_KEGG_mappings)
 end_res_drugs <- get_drug_table("hsa01522")
 edges_plus_kdrug <- add_KEGG_drugs(end_res_edges, end_res_KEGG_mappings, end_res_drugs)
 }
-

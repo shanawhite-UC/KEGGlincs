@@ -42,4 +42,3 @@ layered_nodes_graph_object <- get_graph_object(p53_node_mapping_info,
                                                p53_edge_mapping_info, 
                                                layered_nodes = TRUE)
 }
-

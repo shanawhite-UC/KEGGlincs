@@ -69,4 +69,3 @@ p53_edge_info <- KEGG_lincs("hsa04115", graph_title = "p53"
                              convert_KEGG_IDs = FALSE, get_data = TRUE)
                              }
 }
-

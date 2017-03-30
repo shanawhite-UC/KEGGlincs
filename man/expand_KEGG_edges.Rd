@@ -28,4 +28,3 @@ p53_KGML <- get_KGML("hsa04115")
 p53_KEGG_mappings <- expand_KEGG_mappings(p53_KGML, FALSE)
 p53_edges <- expand_KEGG_edges(p53_KGML, p53_KEGG_mappings)
 }
-

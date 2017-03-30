@@ -44,4 +44,3 @@ p53_edges_HA1E_MAPPED <- add_edge_data(p53_edges, p53_KEGG_mappings,
                                         p53_HA1E_data, c(3, 10,12), 
                                         only_mapped = TRUE)
 }
-

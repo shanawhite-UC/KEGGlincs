@@ -26,4 +26,3 @@ p53_KGML <- get_KGML("hsa04115")
 p53_KEGG_mappings <-  expand_KEGG_mappings(p53_KGML)
 MCF7_p53_mappings <- refine_mappings(p53_KEGG_mappings, "MCF7")
 }
-

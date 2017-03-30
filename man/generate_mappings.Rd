@@ -38,4 +38,3 @@ Intended for use within \code{\link{cyto_vis}}
 style.name = "myKEGGstyle"
 mappings <- generate_mappings(style.name, FALSE)
 }
-
