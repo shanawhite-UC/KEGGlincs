@@ -2,7 +2,7 @@ Package: KEGGlincs
 Type: Package
 Title: Visualize all edges within a KEGG pathway and overlay LINCS data
         [option]
-Version: 1.1.0
+Version: 1.2.0
 Date: 2016-06-02
 Author: Shana White
 Maintainer: Shana White <vandersm@mail.uc.edu>, Mario Medvedovic <medvedm@ucmail.uc.edu>
