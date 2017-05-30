@@ -5,7 +5,7 @@
 \title{Prepare edges for mapping}
 \usage{
 edge_mapping_info(expanded_edges, data_added = FALSE,
-  significance_markup = FALSE)
+  significance_markup = FALSE, tidy_edge = TRUE)
 }
 \arguments{
 \item{expanded_edges}{The data frame object generated via the function 

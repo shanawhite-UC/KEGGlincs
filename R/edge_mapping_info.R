@@ -34,8 +34,9 @@
 #'                                                       
 
 edge_mapping_info <-
-function(expanded_edges, data_added = FALSE, significance_markup = FALSE){
-    expanded_edges <- expanded_edges[,-c(1)]
+function(expanded_edges, data_added = FALSE, significance_markup = FALSE, 
+         tidy_edge = TRUE){
+    #expanded_edges <- expanded_edges[,-c(1)]
     for(i in 1:nrow(expanded_edges)){
         if (expanded_edges$subtype1[i] == "activation"){
             expanded_edges$color[i] = "#b20000"
@@ -145,6 +146,27 @@ function(expanded_edges, data_added = FALSE, significance_markup = FALSE){
             }
         }
     }
-    expanded_edges <- expanded_edges[,c(3:4, 1:2, 5:ncol(expanded_edges))]
+    #edge_map <- edge_map[,c(2,5,3,1,4:ncol(edge_map))]
+    expanded_edges<- cbind(expanded_edges[,c("entry1", "entry2","edgeID", 
+                                        "entry1accession", "entry2accession")],
+                          expanded_edges[,c(6:ncol(expanded_edges))])
+    expanded_edges <- expanded_edges[order(expanded_edges$edgeID),]
+
+    if (tidy_edge == TRUE) {
+      edge_IDs <- seq(min(expanded_edges$edgeID), max(expanded_edges$edgeID))
+      for (i in edge_IDs){
+        if(data_added == TRUE){
+          expanded_edges <- tidy_edge(edges = expanded_edges,
+                                      edge_id = edge_IDs[i], 
+                                      data_added = TRUE,
+                                      by_significance = TRUE)
+        }
+        if(data_added == FALSE){
+          expanded_edges <- tidy_edge(edges = expanded_edges,
+                                      edge_id = edge_IDs[i], 
+                                      data_added = FALSE)
+        }
+      }
+    }
     return(expanded_edges)
 }
