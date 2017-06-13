@@ -89,7 +89,17 @@ cyto_vis <-
                   mappings = mappings[[2]])
     style.JSON <- RJSONIO::toJSON(style)
     httr::POST(url=style.url, body=style.JSON, encode = "json")
+    
+    dependencies.url <- paste(style.url, style.name, "dependencies", sep="/")
+    lock_style <- list(visualPropertyDependency="nodeSizeLocked", 
+                       enabled = "false")
+    lock_style.JSON <- toJSON(list(lock_style))
+    PUT(url=dependencies.url, body=lock_style.JSON, encode="json")
+    
     apply.style.url = paste(base.url, "apply/styles", style.name ,
                             toString(network.suid), sep="/")
     httr::GET(apply.style.url)
+    
+    fit_content.url <- paste(base.url, "apply/fit", network.suid, sep="/")
+    httr::GET(url=fit_content.url)
     }
