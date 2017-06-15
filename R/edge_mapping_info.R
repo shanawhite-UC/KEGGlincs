@@ -8,6 +8,7 @@
 #' @param significance_markup A logical indicator; if set to TRUE will color 
 #' edges based on direction and significance of correlation (as determined by 
 #' user-data-analysis)
+#' @param tidy_edge A logical indicator; must be set to FALSE for expanded edges
 #' @return A data.frame object for edges that will be passed on to the function 
 #' get_graph_object
 #' @export

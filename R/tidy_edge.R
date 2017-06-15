@@ -3,9 +3,11 @@
 #' @export
 #' @param edges The edge dataframe 
 #' @param edge_id The numeric value for the edge_id
+#' @param data_added A logical indicator; set to TRUE if data is added
 #' @param by_significance A logical indicator; option if data is added
 #' @param by_number A logical indicator; gives rough estimate of edge amount
 #' @return A data frame that has had the given edge condensed for viewing
+#' @importFrom grDevices col2rgb rgb
 #' @examples \dontrun{
 #' if (tidy_edge == TRUE) {
 #'    edge_IDs <- seq(min(expanded_edges$edgeID), max(expanded_edges$edgeID))
@@ -26,7 +28,7 @@
 #'}
 #'}
 
-tidy_edge <- function(edges, edge_id, data_added = TRUE, 
+tidy_edge <- function(edges, edge_id, data_added = FALSE, 
                       by_significance = FALSE, by_number = TRUE){
   edge <- edges[edges$edgeID == edge_id,]
   edges_1 <- edges[edges$edgeID != edge_id,]

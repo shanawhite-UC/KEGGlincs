@@ -17,6 +17,8 @@ been added (i.e. edges modified by function add_edge_data())}
 \item{significance_markup}{A logical indicator; if set to TRUE will color 
 edges based on direction and significance of correlation (as determined by 
 user-data-analysis)}
+
+\item{tidy_edge}{A logical indicator; must be set to FALSE for expanded edges}
 }
 \value{
 A data.frame object for edges that will be passed on to the function 

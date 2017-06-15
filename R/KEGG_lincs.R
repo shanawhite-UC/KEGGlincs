@@ -24,6 +24,7 @@
 #' 'expanded' edge information for the specified pathway
 #' @param convert_KEGG_IDs A logical indicator; if set to TRUE KEGG 
 #' compounds will remain labeled via KEGG codes (do not need KEGGREST)
+#' @param tidy_edge A logical indicator; must be set to FALSE for expanded edges
 #' @return  A dynamic map in Cytoscape automatically formatted for convenient 
 #' viewing and, if idicated by user, a data.frame object with detailed 
 #' information for 'expanded' KEGG edges
@@ -51,7 +52,8 @@ function(pathwayid, cell_line = NA,
                             only_mapped = TRUE,
                             layered_nodes = FALSE, graph_title = "default",
                             get_data = FALSE,
-                            convert_KEGG_IDs = TRUE){
+                            convert_KEGG_IDs = TRUE, 
+                            tidy_edge = FALSE){
     if (is.na(refine_by_cell_line)){
         if (is.na(cell_line)){
             refine_by_cell_line <- FALSE
@@ -85,14 +87,14 @@ function(pathwayid, cell_line = NA,
     }
 
     if (is.na(cell_line)){
-        edge_map <- edge_mapping_info(expanded_edges)
+        edge_map <- edge_mapping_info(expanded_edges, tidy_edge = tidy_edge)
     if (graph_title == "default"){
         graph_title <- paste0("Pathway = ", pathwayid, ":", 
                             KGML@pathwayInfo@title)
         }
     }
     if (!is.na(cell_line) & !add_L1000_edge_data){
-        edge_map <- edge_mapping_info(expanded_edges)
+        edge_map <- edge_mapping_info(expanded_edges, tidy_edge = tidy_edge)
         if (graph_title == "default"){
             graph_title <- paste0("Pathway = ", pathwayid, ":", 
                             KGML@pathwayInfo@title, "Refined by Cell-Line:  ",
@@ -101,7 +103,7 @@ function(pathwayid, cell_line = NA,
     }
     if (nrow(expanded_edges[expanded_edges$type == "maplink",]) == 
         nrow(expanded_edges) & only_mapped) {
-            edge_map <- edge_mapping_info(expanded_edges)
+            edge_map <- edge_mapping_info(expanded_edges, tidy_edge = tidy_edge)
             if (graph_title == "default"){
                 graph_title <- paste0("Pathway = ", pathwayid, ":", 
                             KGML@pathwayInfo@title, "Cell-Line: ", 
@@ -118,7 +120,8 @@ function(pathwayid, cell_line = NA,
                                             user_data, c(10,12), 
                                             only_mapped = only_mapped)
             edge_map <- edge_mapping_info(edges_plus_data, data_added = TRUE, 
-                                    significance_markup = significance_markup)
+                                    significance_markup = significance_markup,
+                                    tidy_edge = tidy_edge)
             if (graph_title == "default"){
                 graph_title <- paste0("Pathway = ", pathwayid, ":", 
                                 KGML@pathwayInfo@title, ",  Cell-Line: ", 
@@ -126,7 +129,7 @@ function(pathwayid, cell_line = NA,
             }
         }
         else {
-            edge_map <- edge_mapping_info(expanded_edges)
+            edge_map <- edge_mapping_info(expanded_edges, tidy_edge = tidy_edge)
             if (graph_title == "default"){
                 graph_title <- paste0("Pathway = ", pathwayid, ":", 
                                 KGML@pathwayInfo@title, ",  Cell-Line: ", 

@@ -4,13 +4,15 @@
 \alias{tidy_edge}
 \title{Tidy up pathway by combining edges inside of edge_mapping_info}
 \usage{
-tidy_edge(edges, edge_id, data_added = TRUE, by_significance = FALSE,
+tidy_edge(edges, edge_id, data_added = FALSE, by_significance = FALSE,
   by_number = TRUE)
 }
 \arguments{
 \item{edges}{The edge dataframe}
 
 \item{edge_id}{The numeric value for the edge_id}
+
+\item{data_added}{A logical indicator; set to TRUE if data is added}
 
 \item{by_significance}{A logical indicator; option if data is added}
 

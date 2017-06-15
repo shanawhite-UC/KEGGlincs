@@ -19,5 +19,5 @@ biocViews: NetworkInference, GeneExpression, DataRepresentation,
         ThirdPartyClient,CellBiology,GraphAndNetwork,Pathways,KEGG,Network
 Imports:
         AnnotationDbi,KEGGgraph,igraph,plyr,gtools,httr,RJSONIO,KEGGREST,
-        methods,graphics,stats,utils, XML
+        methods,graphics,stats,utils, XML, grDevices
 VignetteBuilder: knitr

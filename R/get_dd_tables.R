@@ -12,12 +12,14 @@
 get_drug_table <- function(pathwayid){
     
     url <- paste0("http://www.kegg.jp/kegg-bin/pathway_dd_list?map=",
-                  pathwayid)
+                    pathwayid)
     dd_table <- data.frame(
-                XML::readHTMLTable(url, header = T, which = 4, as.data.frame = FALSE), 
+                XML::readHTMLTable(url, header = TRUE, which = 4, 
+                                    as.data.frame = FALSE), 
                 stringsAsFactors = FALSE)
     if (nrow(dd_table) > 0){
-        d_table <- subset(dd_table, substring(dd_table$Disease.drug, 1, 1) == "D")
+        d_table <- subset(dd_table, 
+                            substring(dd_table$Disease.drug, 1, 1) == "D")
         if(nrow(d_table) == 0){
             warning("No associated drug targets in selected pathway")
             return()
@@ -34,10 +36,14 @@ get_drug_table <- function(pathwayid){
         long_drug <- data.frame("drug_KEGG_ID" = unlist(d_table$drug_KEGG_ID), 
                                 "drug_name" = unlist(d_table$drug_name), 
                                 "gene_target" = unlist(d_table$gene_target),
-                                 stringsAsFactors = FALSE)
+                                stringsAsFactors = FALSE)
         for (i in 1:nrow(long_drug)){
-            long_drug$gene_id[i] <- strsplit(long_drug$gene_target[i], "\\(")[[1]][1]
-            long_drug$gene_symbol[i] <- regmatches(long_drug$gene_target[i], gregexpr("(?<=\\().*?(?=\\))", long_drug$gene_target[i], perl=T))[[1]]
+            long_drug$gene_id[i] <- strsplit(long_drug$gene_target[i], 
+                                            "\\(")[[1]][1]
+            long_drug$gene_symbol[i] <- regmatches(long_drug$gene_target[i], 
+                                                gregexpr("(?<=\\().*?(?=\\))", 
+                                                long_drug$gene_target[i], 
+                                                perl=TRUE))[[1]]
         }
         drops <- "gene_target"
         d_table <- long_drug[, names(long_drug) != drops]
@@ -55,10 +61,11 @@ get_disease_table <- function(pathwayid){
     url <- paste0("http://www.kegg.jp/kegg-bin/pathway_dd_list?map=",
                   pathwayid)
     dd_table <- data.frame(
-        XML::readHTMLTable(url, header = T, which = 4, as.data.frame = FALSE), 
+        XML::readHTMLTable(url, header = TRUE, which = 4, as.data.frame = FALSE), 
         stringsAsFactors = FALSE)
     if (nrow(dd_table) > 0){
-        d_table <- subset(dd_table, substring(dd_table$Disease.drug, 1, 1) == "H")
+        d_table <- subset(dd_table, 
+                          substring(dd_table$Disease.drug, 1, 1) == "H")
         if(nrow(d_table) == 0){
             warning("No diseases associated with selected pathway")
             return()

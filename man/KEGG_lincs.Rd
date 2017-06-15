@@ -8,7 +8,7 @@ KEGG_lincs(pathwayid, cell_line = NA, refine_by_cell_line = NA,
   add_L1000_edge_data = TRUE, significance_markup = TRUE,
   data_type = "100_full", pert_time = 96, only_mapped = TRUE,
   layered_nodes = FALSE, graph_title = "default", get_data = FALSE,
-  convert_KEGG_IDs = TRUE)
+  convert_KEGG_IDs = TRUE, tidy_edge = FALSE)
 }
 \arguments{
 \item{pathwayid}{A KEGG pathway ID of the form "hsa12345" 
@@ -46,6 +46,8 @@ mapped to one location}
 
 \item{convert_KEGG_IDs}{A logical indicator; if set to TRUE KEGG 
 compounds will remain labeled via KEGG codes (do not need KEGGREST)}
+
+\item{tidy_edge}{A logical indicator; must be set to FALSE for expanded edges}
 }
 \value{
 A dynamic map in Cytoscape automatically formatted for convenient 
