@@ -163,15 +163,6 @@ edges connecting nodes) or have not been hard-coded in the KGML file.  The node
 labels may also differ between maps (KEGGlincs labels nodes as the first 'alias'
 in the respective KGML slot as there is no corresponding 'label' slot).
 
-*Note: to have the pathway maps automatically formatted for convenient viewing
-and proper node size, please use the function `cyto_vis_auto`:
-https://github.com/uc-bd2k/KEGGlincs/blob/master/R/cyto_vis_auto.R
-This function requires systems to have the R package RCy3 installed, which is 
-not yet available for all systems.
-
-Otherwise please follow the steps under `CytoscapeSettings.Rmd` to reproduce 
-the maps generated in this vignette.
-
 #####Alternative: KEGG_lincs master function
 The steps above may be avoided if the user does not wish to generate 
 intermediary files/objects by making use of the function  `KEGG_lincs` as 
