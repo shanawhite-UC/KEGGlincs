@@ -35,9 +35,9 @@ add_edge_data <- function(expanded_edges, KEGG_mappings,
     
     expanded_edges <- expanded_edges[expanded_edges$type != "maplink", ]
     
-    if ("pre_mapped" %in% names(user_data)) {
-        user_data <- user_data[, -c(which(colnames(user_data) == "pre_mapped"))]
-    }
+    # if ("pre_mapped" %in% names(user_data)) {
+    #     user_data <- user_data[, -c(which(colnames(user_data) == "pre_mapped"))]
+    # }
     
     if (nrow(expanded_edges) > 0) {
         
@@ -84,17 +84,12 @@ add_edge_data <- function(expanded_edges, KEGG_mappings,
             } else {
                 edge_set <- expanded_edges_1
             }
-            
+
             edge_set <- edge_set[order(edge_set$unique_ID), ]
             
-            data_to_add <- cbind(as.character(pre_mapped[, "unique_ID"]), 
-                                pre_mapped[, data_column_no])
-            data_to_add <- data.frame(data_to_add, stringsAsFactors = FALSE)
-            names(data_to_add)[1] <- "unique_ID"
-            if (ncol(data_to_add) == 2) {
-                names(data_to_add)[2] <- names(pre_mapped)[data_column_no]
-            }
-            
+            data_to_add <- data.frame("unique_ID" = pre_mapped$unique_ID, stringsAsFactors = FALSE)
+            data_to_add <- cbind(data_to_add, pre_mapped[, data_column_no])
+
             data_to_add <- data_to_add[order(data_to_add$unique_ID), ]
             
             annotated_edges <- merge(edge_set, data_to_add, "unique_ID", 
