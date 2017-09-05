@@ -81,9 +81,9 @@ overlap_info <-
         return(overlaps)
     }
 
-    conversion_key <- suppressMessages(
+    conversion_key <- suppressWarnings(suppressMessages(
         AnnotationDbi::select(hgu133a.db::hgu133a.db, 
-        AnnotationDbi::keys(hgu133a.db), c("SYMBOL","ENTREZID"), "PROBEID"))
+        AnnotationDbi::keys(hgu133a.db), c("SYMBOL","ENTREZID"), "PROBEID")))
   
     for (i in 1:nrow(data)){
         if (data_type == "100_full"){
