@@ -8,7 +8,7 @@ KL_compare(pathwayid, cell_line1 = NA, cell_line2 = NA,
   refine_by_cell_line = TRUE, add_L1000_edge_data = TRUE,
   significance_markup = TRUE, data_type = "100_full", pert_time = 96,
   only_mapped = TRUE, get_data = FALSE, convert_KEGG_IDs = TRUE,
-  graph_title = "default", tidy_edges = TRUE, layered_nodes = FALSE)
+  graph_title = "default", tidy_edge = TRUE, layered_nodes = FALSE)
 }
 \arguments{
 \item{pathwayid}{A KEGG pathway ID of the form "hsa12345" 
@@ -42,6 +42,8 @@ edges that 'exist' in data but are not documented in KEGG}
 compounds will remain labeled via KEGG codes (do not need KEGGREST)}
 
 \item{graph_title}{An optional user-specified graph title}
+
+\item{tidy_edge}{A logical indicator; must be set to FALSE for expanded edges}
 
 \item{layered_nodes}{A logical indicator; if set to TRUE will create a graph 
 with 'stacked' nodes that the user can manipulate when multiple nodes are 

@@ -19,6 +19,7 @@
 #' with 'stacked' nodes that the user can manipulate when multiple nodes are 
 #' mapped to one location
 #' @param graph_title An optional user-specified graph title
+#' @param tidy_edge A logical indicator; must be set to FALSE for expanded edges
 #' @param get_data A logical indicator; if set to true, will return the 
 #' 'expanded' edge information for the specified pathway
 #' @param convert_KEGG_IDs A logical indicator; if set to TRUE KEGG 
@@ -43,7 +44,7 @@ KL_compare <-
              get_data = FALSE,
              convert_KEGG_IDs = TRUE,
              graph_title = "default",
-             tidy_edges = TRUE,
+             tidy_edge = TRUE,
              layered_nodes = FALSE){
         cell_lines <- c("A375","A549","ASC","HA1E","HCC515","HEK293T","HEKTE",
                         "HEPG2","HT29","MCF7","NCIH716","NPC","PC3","SHSY5Y",
@@ -95,7 +96,8 @@ KL_compare <-
         if(expanded_edges$type[1] == "dummy"){
             graph_title <- paste0("Pathway = ", pathwayid, ":", 
                                   KGML@pathwayInfo@title,
-                                  "Cell-Line: ", cell_line, 
+                                  "Cell-Lines: ", 
+                                  paste0(cell_line1,",", cell_line2), 
                                   "  *No Edges in Pathway")
         }
         
@@ -104,8 +106,9 @@ KL_compare <-
             edge_map <- edge_mapping_info(expanded_edges)
             if (graph_title == "default"){
                 graph_title <- paste0("Pathway = ", pathwayid, ":", 
-                                      KGML@pathwayInfo@title, "Cell-Line: ", 
-                                      cell_line,  "  *No Edges in Data")
+                                      KGML@pathwayInfo@title, "Cell-Lines: ", 
+                                      paste0(cell_line1,",", cell_line2), 
+                                       "  *No Edges in Data")
             }
             warning("All documented edges are of type 'maplink'; 
                     Overlap data cannot be mapped to selected pathway")
@@ -157,7 +160,8 @@ KL_compare <-
                     edges_compare$summary_score[i] <- exp(abs(edges_compare$test[i]))
                     
                     
-                    if (edges_compare$test[i] <= qnorm(0.1) | edges_compare$test[i] >= qnorm(0.9)){
+                    if (edges_compare$test[i] <= stats::qnorm(0.1) | 
+                        edges_compare$test[i] >= stats::qnorm(0.9)){
                         edges_compare$significant[i] <- 1
                     }
                     else {
@@ -205,7 +209,7 @@ KL_compare <-
                     }
                 }
             }
-            if (tidy_edges == TRUE) {
+            if (tidy_edge == TRUE) {
                 edge_IDs <- seq(min(edge_map$edgeID), max(edge_map$edgeID))
                 for (i in edge_IDs){
                     edge_map <- tidy_edge(edges = edge_map, 
