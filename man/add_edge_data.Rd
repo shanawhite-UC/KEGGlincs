@@ -4,8 +4,8 @@
 \alias{add_edge_data}
 \title{Annotate KEGG edge mappings with user data}
 \usage{
-add_edge_data(expanded_edges, KEGG_mappings, user_data, data_column_no = 3,
-  only_mapped = FALSE)
+add_edge_data(expanded_edges, KEGG_mappings, user_data, map_type = "SYMBOL",
+  data_column_no = 3, only_mapped = FALSE)
 }
 \arguments{
 \item{expanded_edges}{The data frame object generated via the function 
@@ -17,6 +17,9 @@ function expand_KEGG_mappings}
 \item{user_data}{A data frame where in which the first two columns contain 
 gene symbols representing an edge and any/all other column[s] contain 
 corresponding edge data.}
+
+\item{map_type}{If the genes in your data set are left untranslated 
+set to "NUMBER" (assuming numbers are gene accession numbers)}
 
 \item{data_column_no}{The column index for desired user data to be added}
 

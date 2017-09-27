@@ -27,8 +27,9 @@
 #'                                "HA1E", data_type = "100_bing")
 #' 
 #' p53_edges_HA1E_data_MAPPED <- add_edge_data(p53_edges, p53_KEGG_mappings, 
-#'                                                p53_HA1E_data, c(3, 10,12),
-#'                                                only_mapped = TRUE)
+#'                                             p53_HA1E_data, 
+#'                                             data_column_no = c(3, 10,12),
+#'                                             only_mapped = TRUE)
 #'                                                
 #' p53_edge_mapping_HA1E <- edge_mapping_info(p53_edges_HA1E_data_MAPPED, 
 #'                                                       data_added = TRUE)
