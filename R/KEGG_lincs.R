@@ -117,7 +117,8 @@ function(pathwayid, cell_line = NA,
                                 data_type = data_type, pert_time = pert_time)
         if (!is.na(user_data)[1,1]) {
             edges_plus_data <- add_edge_data(expanded_edges, KEGG_mappings, 
-                                            user_data, c(11,13), 
+                                            user_data, c(11,13),
+                                            map_type = "SYMBOL", 
                                             only_mapped = only_mapped)
             edge_map <- edge_mapping_info(edges_plus_data, data_added = TRUE, 
                                     significance_markup = significance_markup,

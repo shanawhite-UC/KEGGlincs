@@ -7,14 +7,10 @@
 #' SHSY5Y,SKL,SW480,VCAP)
 #' @param cell_line2 A cell line such that cell_line1 != cell_line2
 #' @param refine_by_cell_line A logical indicator
-#' @param add_L1000_edge_data A logical indicator 
 #' @param data_type Choose from data types: (100_full, 100_bing, 50_lm)
 #' @param pert_time Choose from (6,24,48,96,120,144,168)
 #' @param only_mapped A logical indicator; if set to FALSE will return 'de-novo'
 #' edges that 'exist' in data but are not documented in KEGG
-#' @param significance_markup A logical indicator; if set to TRUE will color
-#'  edges based on direction and significance of correlation (as determined by 
-#'  user-data-analysis)
 #' @param layered_nodes A logical indicator; if set to TRUE will create a graph 
 #' with 'stacked' nodes that the user can manipulate when multiple nodes are 
 #' mapped to one location
@@ -36,8 +32,6 @@
 KL_compare <-
     function(pathwayid, cell_line1 = NA, cell_line2 = NA,
              refine_by_cell_line = TRUE,
-             add_L1000_edge_data = TRUE,  
-             significance_markup = TRUE,
              data_type = "100_full",
              pert_time = 96,
              only_mapped = TRUE,
@@ -144,18 +138,29 @@ KL_compare <-
         if (!is.na(cell_data1)[1,1] & !is.na(cell_data2)[1,1]) {
             edges_plus_data1 <- add_edge_data(expanded_edges, KEGG_mappings, 
                                               cell_data1, c(15,16), 
+                                              map_type = "SYMBOL",
                                               only_mapped = only_mapped)
             edges_plus_data2 <- add_edge_data(expanded_edges, KEGG_mappings, 
                                               cell_data2, c(15,16), 
+                                              map_type = "SYMBOL",
                                               only_mapped = only_mapped)
-            edges_plus_data1$unique_ID <- paste0(edges_plus_data1$entry1symbol, ":", edges_plus_data1$entry2symbol, ":", edges_plus_data1$edgeID)
-            edges_plus_data2$unique_ID <- paste0(edges_plus_data2$entry1symbol, ":", edges_plus_data2$entry2symbol, ":", edges_plus_data2$edgeID)
+            names(edges_plus_data1)[18] <- "SE_1"
+            names(edges_plus_data2)[18] <- "SE_2"
+            edges_plus_data1$unique_ID <- paste0(edges_plus_data1$entry1symbol, 
+                                                 ":", edges_plus_data1$entry2symbol, 
+                                                 ":", edges_plus_data1$edgeID)
+            edges_plus_data2$unique_ID <- paste0(edges_plus_data2$entry1symbol, 
+                                                 ":", edges_plus_data2$entry2symbol, 
+                                                 ":", edges_plus_data2$edgeID)
             
-            edges_compare <- merge(edges_plus_data1, edges_plus_data2[,c(18,19,21)], by = "unique_ID")
+            edges_compare <- merge(edges_plus_data1, edges_plus_data2[,c(18,19,21)], 
+                                    by = "unique_ID")
             
             for(i in 1:nrow(edges_compare)){
-                if (!is.na(edges_compare$log_OR_1[i]) & !is.na(edges_compare$log_OR_2[i])){
-                    edges_compare$test[i] <- (edges_compare$log_OR_1[i] - edges_compare$log_OR_2[i])/
+                if (!is.na(edges_compare$log_OR_1[i]) & 
+                    !is.na(edges_compare$log_OR_2[i])){
+                    edges_compare$test[i] <- (edges_compare$log_OR_1[i] - 
+                                                  edges_compare$log_OR_2[i])/
                         sqrt(edges_compare$SE_1[i]^2 + edges_compare$SE_2[i]^2)
                     edges_compare$summary_score[i] <- exp(abs(edges_compare$test[i]))
                     

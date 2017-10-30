@@ -5,8 +5,7 @@
 \title{Combines all other package functions for one-step cell line comparison}
 \usage{
 KL_compare(pathwayid, cell_line1 = NA, cell_line2 = NA,
-  refine_by_cell_line = TRUE, add_L1000_edge_data = TRUE,
-  significance_markup = TRUE, data_type = "100_full", pert_time = 96,
+  refine_by_cell_line = TRUE, data_type = "100_full", pert_time = 96,
   only_mapped = TRUE, get_data = FALSE, convert_KEGG_IDs = TRUE,
   graph_title = "default", tidy_edge = TRUE, layered_nodes = FALSE)
 }
@@ -21,12 +20,6 @@ SHSY5Y,SKL,SW480,VCAP)}
 \item{cell_line2}{A cell line such that cell_line1 != cell_line2}
 
 \item{refine_by_cell_line}{A logical indicator}
-
-\item{add_L1000_edge_data}{A logical indicator}
-
-\item{significance_markup}{A logical indicator; if set to TRUE will color
-edges based on direction and significance of correlation (as determined by 
-user-data-analysis)}
 
 \item{data_type}{Choose from data types: (100_full, 100_bing, 50_lm)}
 
