@@ -67,9 +67,12 @@ function(pathwayid, cell_line = NA,
     if(!isS4(KGML)){
         return()
     }
-    KEGG_mappings <- 
-        expand_KEGG_mappings(KGML,convert_KEGG_IDs = convert_KEGG_IDs)
+    if (!refine_by_cell_line){
+        KEGG_mappings <- expand_KEGG_mappings(KGML,convert_KEGG_IDs = convert_KEGG_IDs)
+    }
+        
     if (refine_by_cell_line) {
+        KEGG_mappings <- expand_KEGG_mappings(KGML,convert_KEGG_IDs = convert_KEGG_IDs)
         full_mappings <- KEGG_mappings
         KEGG_mappings <- refine_mappings(KEGG_mappings, cell_line)
         for (i in 1:nrow(full_mappings)){

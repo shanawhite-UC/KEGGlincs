@@ -156,7 +156,7 @@ function(expanded_edges, data_added = FALSE, significance_markup = FALSE,
 
     if (tidy_edge == TRUE) {
       edge_IDs <- seq(min(expanded_edges$edgeID), max(expanded_edges$edgeID))
-      for (i in edge_IDs){
+      for (i in edge_IDs[edge_IDs %in% expanded_edges$edgeID]){
         if(data_added == TRUE){
           expanded_edges <- tidy_edge(edges = expanded_edges,
                                       edge_id = edge_IDs[i], 
