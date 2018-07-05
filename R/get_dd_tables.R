@@ -11,22 +11,21 @@
 
 get_drug_table <- function(pathwayid){
     
-    url <- paste0("http://www.kegg.jp/kegg-bin/pathway_dd_list?map=",
-                    pathwayid)
-    dd_table <- data.frame(
-                XML::readHTMLTable(url, header = TRUE, which = 4, 
-                                    as.data.frame = FALSE), 
-                stringsAsFactors = FALSE)
+    raw_tabs <- GET(paste0("http://www.kegg.jp/kegg-bin/pathway_dd_list?map=",
+                           pathwayid))
+    
+    dd_table <- XML::readHTMLTable(rawToChar(raw_tabs$content),which = 4,
+                                   stringsAsFactors = F)
     if (nrow(dd_table) > 0){
         d_table <- subset(dd_table, 
-                            substring(dd_table$Disease.drug, 1, 1) == "D")
+                          substring(dd_table[,1], 1, 1) == "D")
         if(nrow(d_table) == 0){
             warning("No associated drug targets in selected pathway")
             return()
         }
         names(d_table) <- c("drug_KEGG_ID", "drug_name", "gene_target")
         d_table$gene_target <- strsplit(d_table$gene_target, " ")
-
+        
         for(i in 1:nrow(d_table)){
             l <- length(unlist(d_table$gene_target[i]))
             d_table$drug_KEGG_ID[i] <- list(rep(d_table$drug_KEGG_ID[i], l))
@@ -39,11 +38,11 @@ get_drug_table <- function(pathwayid){
                                 stringsAsFactors = FALSE)
         for (i in 1:nrow(long_drug)){
             long_drug$gene_id[i] <- strsplit(long_drug$gene_target[i], 
-                                            "\\(")[[1]][1]
+                                             "\\(")[[1]][1]
             long_drug$gene_symbol[i] <- regmatches(long_drug$gene_target[i], 
-                                                gregexpr("(?<=\\().*?(?=\\))", 
-                                                long_drug$gene_target[i], 
-                                                perl=TRUE))[[1]]
+                                                   gregexpr("(?<=\\().*?(?=\\))", 
+                                                            long_drug$gene_target[i], 
+                                                            perl=TRUE))[[1]]
         }
         drops <- "gene_target"
         d_table <- long_drug[, names(long_drug) != drops]
