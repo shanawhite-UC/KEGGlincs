@@ -17,8 +17,6 @@ SHSY5Y,SKL,SW480,VCAP)}
 \item{data_type}{Choose from data types: (100_full, 100_bing, 50_lm)}
 
 \item{pathway_nodes}{Keep NA unless certain set of perturbagens is designated}
-
-\item{edge_id}{The numeric value for the edge_id}
 }
 \value{
 A data frame with conveniently formatted LINCS L100 CGS
