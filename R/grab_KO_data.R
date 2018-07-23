@@ -4,7 +4,6 @@
 #' @param cell_line Choose from the set of cell lines: 
 #' (A375,A549,ASC,HA1E,HCC515,HEK293T,HEKTE,HEPG2,HT29,MCF7,NCIH716,NPC,PC3,
 #' SHSY5Y,SKL,SW480,VCAP)  
-#' @param edge_id The numeric value for the edge_id
 #' @param data_type Choose from data types: (100_full, 100_bing, 50_lm)
 #' @param pert_time Choose from (6,24,48,96,120,144,168)
 #' @param pathway_nodes Keep NA unless certain set of perturbagens is designated
