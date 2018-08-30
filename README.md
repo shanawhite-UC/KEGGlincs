@@ -10,11 +10,12 @@ Installation:
 
 ```{r}
 #Make sure that the following bioconductor packages are installed
-source("http://bioconductor.org/biocLite.R")
-biocLite(c("hgu133a.db", "KEGGgraph", "KEGGREST", "KOdata"))
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install(c("hgu133a.db", "KEGGgraph", "KEGGREST", "KOdata"))
 
 #Download package
-biocLite("KEGGlincs")
+BiocManager::install("KEGGlincs")
 
 #Load/activate package for use
 library(KEGGlincs)
