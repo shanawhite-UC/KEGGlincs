@@ -4,8 +4,8 @@
 \alias{generate_mappings}
 \title{The 'boilerplate' for this package's desired graph style}
 \usage{
-generate_mappings(style_name, map_edge_width, edge_width_attribute, min_score,
-  max_score)
+generate_mappings(style_name, map_edge_width, edge_width_attribute,
+  min_score, max_score)
 }
 \arguments{
 \item{style_name}{An argument to name style; when used inside 

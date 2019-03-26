@@ -25,16 +25,13 @@
 #' p53_HA1E_data <- overlap_info(p53_KGML, p53_KEGG_mappings, 'HA1E', 
 #'                                data_type = '100_bing', only_mapped = FALSE)
 #'                                
-#' p53_edges_HA1E_ALL <- add_edge_data(p53_edges, p53_KEGG_mappings, 
-#'                                      p53_HA1E_data, c(3, 10,12))
-#' p53_edges_HA1E_MAPPED <- add_edge_data(p53_edges, p53_KEGG_mappings, 
-#'                                         p53_HA1E_data, c(3, 10,12), 
-#'                                         only_mapped = TRUE)
+#' p53_edges_HA1E <- add_edge_data(p53_edges, p53_KEGG_mappings, 
+#'                                         p53_HA1E_data, c(3, 10,12))
 
 
 add_edge_data <- function(expanded_edges, KEGG_mappings,
-                          user_data, map_type = "SYMBOL",data_column_no = 3,
-                          only_mapped = FALSE) {
+                          user_data, data_column_no = 3, map_type = "SYMBOL",
+                          only_mapped = TRUE) {
     
     expanded_edges <- expanded_edges[expanded_edges$type != "maplink", ]
     if (nrow(expanded_edges) > 0) {

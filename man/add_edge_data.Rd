@@ -4,8 +4,8 @@
 \alias{add_edge_data}
 \title{Annotate KEGG edge mappings with user data}
 \usage{
-add_edge_data(expanded_edges, KEGG_mappings, user_data, map_type = "SYMBOL",
-  data_column_no = 3, only_mapped = FALSE)
+add_edge_data(expanded_edges, KEGG_mappings, user_data,
+  data_column_no = 3, map_type = "SYMBOL", only_mapped = TRUE)
 }
 \arguments{
 \item{expanded_edges}{The data frame object generated via the function 
@@ -18,10 +18,10 @@ function expand_KEGG_mappings}
 gene symbols representing an edge and any/all other column[s] contain 
 corresponding edge data.}
 
+\item{data_column_no}{The column index for desired user data to be added}
+
 \item{map_type}{If the genes in your data set are left untranslated 
 set to "NUMBER" (assuming numbers are gene accession numbers)}
-
-\item{data_column_no}{The column index for desired user data to be added}
 
 \item{only_mapped}{A logical indicator; if set to FALSE will return 'de-novo'
 edges that 'exist' in data but are not documented in KEGG}
@@ -41,9 +41,6 @@ p53_edges <- expand_KEGG_edges(p53_KGML, p53_KEGG_mappings)
 p53_HA1E_data <- overlap_info(p53_KGML, p53_KEGG_mappings, 'HA1E', 
                                data_type = '100_bing', only_mapped = FALSE)
                                
-p53_edges_HA1E_ALL <- add_edge_data(p53_edges, p53_KEGG_mappings, 
-                                     p53_HA1E_data, c(3, 10,12))
-p53_edges_HA1E_MAPPED <- add_edge_data(p53_edges, p53_KEGG_mappings, 
-                                        p53_HA1E_data, c(3, 10,12), 
-                                        only_mapped = TRUE)
+p53_edges_HA1E <- add_edge_data(p53_edges, p53_KEGG_mappings, 
+                                        p53_HA1E_data, c(3, 10,12))
 }
